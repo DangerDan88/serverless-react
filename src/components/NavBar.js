@@ -18,7 +18,7 @@ export default function NavBar() {
       </StyledNavBrand>
       <StyledNavItems>
         <li>
-          <StyledLinkButton to="/">Home</StyledLinkButton>
+          <StyledLinkButton to="/home">Home</StyledLinkButton>
         </li>
         <li>
           <StyledLinkButton to="/highscores">Scores</StyledLinkButton>
