@@ -1,22 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {
+  StyledNavBar,
+  StyledNavBrand,
+  StyledNavItems,
+  StyledLinkButton,
+} from "../styled/NavBar";
+import { Accent } from "../styled/RandomStyles";
 
 export default function NavBar() {
   return (
-    <nav>
-      <div>
-        <Link to="/">
-          Learn.Build.<span>Type.</span>
-        </Link>
-      </div>
-      <ul>
+    <StyledNavBar>
+      {" "}
+      <StyledNavBrand>
+        <StyledLinkButton to="/">
+          Learn.Build.<Accent>Type.</Accent>
+        </StyledLinkButton>
+      </StyledNavBrand>
+      <StyledNavItems>
         <li>
-          <Link to="/">Home</Link>
+          <StyledLinkButton to="/">Home</StyledLinkButton>
         </li>
         <li>
-          <Link to="/highscores">Scores</Link>
+          <StyledLinkButton to="/highscores">Scores</StyledLinkButton>
         </li>
-      </ul>
-    </nav>
+      </StyledNavItems>
+    </StyledNavBar>
   );
 }
