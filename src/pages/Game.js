@@ -45,6 +45,15 @@ export default function Game({ history }) {
     }
   }, [seconds, ms, history]);
 
+  const keyUpHandler = (e) => {};
+
+  useEffect(() => {
+    document.addEventListener("keyup", keyUpHandler);
+    return () => {
+      document.removeEventListener("keyup", keyUpHandler);
+    };
+  }, []);
+
   return (
     <StyledGame>
       <StyledScore>
