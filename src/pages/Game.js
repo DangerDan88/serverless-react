@@ -18,6 +18,7 @@ export default function Game({ history }) {
 
   useEffect(() => {
     setRandomCharacter();
+    setScore(0);
     const currentTime = new Date();
     const interval = setInterval(() => updateTime(currentTime), 1);
     return () => clearInterval(interval);
