@@ -1,0 +1,6 @@
+[build]
+  publish = "/build"
+  # Default build command.
+  command = "npm run build'"
+
+  ## commands in this file override build settings in netlify.
