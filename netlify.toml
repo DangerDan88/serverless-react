@@ -1,7 +1,4 @@
   [build]
   publish = "/build"
-  command = "CI = npm run build"
+  command = "CI= npm run build"
   functions = "/functions"
-
-
-  ## commands in this file override build settings in netlify.
