@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useScore } from "../context/ScoreContext";
 import { StyledLinkButton } from "../styled/NavBar";
-import { StyledCharacter } from "../styled/HighScores";
+import { StyledCharacter } from "../styled/Game";
 import { StyledTitle } from "../styled/RandomStyles";
 // page components get access to a history object where you can push users to different pages.
 export default function GameOver({ history }) {
