@@ -26,7 +26,7 @@ export default function NavBar() {
         <li>
           <StyledLinkButton to="/highscores">Scores</StyledLinkButton>
         </li>
-        {/* this is a react es6 short hand where you put what you want to render if condition is met right under stated condition       */}
+        {/* this is a react es6 short hand where you put what you want to render if condition is met right under stated condition */}
         {!isAuthenticated && (
           <button onClick={() => loginWithRedirect()}>Log In</button>
         )}
