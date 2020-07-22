@@ -24,7 +24,7 @@ export default function NavBar() {
           <StyledLinkButton to="/home">Home</StyledLinkButton>
         </li>
         <li>
-          <StyledLinkButton to="/highscores">Scores</StyledLinkButton>
+          <StyledLinkButton to="/highscores">HighScores</StyledLinkButton>
         </li>
         {/* this is a react es6 short hand where you put what you want to render if condition is met right under stated condition */}
         {!isAuthenticated && (

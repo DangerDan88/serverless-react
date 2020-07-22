@@ -3,27 +3,27 @@ import { useScore } from "../context/ScoreContext";
 import { StyledLinkButton } from "../styled/NavBar";
 import { StyledCharacter } from "../styled/Game";
 import { StyledTitle } from "../styled/RandomStyles";
-import { useAuth0, isAuthenticated } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 // page components get access to a history object where you can push users to different pages.
 export default function GameOver({ history }) {
   const [score] = useScore();
   const [scoreMessage, setScoreMessage] = useState("");
-  const { getTokenSilently } = useAuth0();
+  const { getTokenSilently, isAuthenticated } = useAuth0();
 
   if (score === -1) {
-    history.pushState("/");
+    history.push("/");
   }
 
   useEffect(() => {
     const saveHighScore = async () => {
       try {
-        const token = await getTokenSilently();
+        // const token = await getTokenSilently();
         const options = {
           method: "POST",
           body: JSON.stringify({ name: "James", score }),
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          // headers: {
+          // Authorization: `Bearer ${token}`,
+          // },
         };
         const res = await fetch("./netlify/functions/saveHighScore", options);
         const data = await res.json();
@@ -39,7 +39,7 @@ export default function GameOver({ history }) {
     if (isAuthenticated) {
       saveHighScore();
     }
-  }, [getTokenSilently, score]);
+  }, [score, isAuthenticated, getTokenSilently]);
 
   return (
     <div>

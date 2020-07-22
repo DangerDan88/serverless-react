@@ -8,13 +8,14 @@ export default function HighScores() {
   useEffect(() => {
     const loadHighScores = async () => {
       try {
-        const res = await fetch("/.netlify/functions/getHighScores");
+        const res = await fetch("/.netlify/functions/getHighScore");
         const scores = await res.json();
         setHighScores(scores);
       } catch (err) {
         console.log(err);
       }
     };
+    loadHighScores();
   }, []);
   return (
     <div>

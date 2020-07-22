@@ -6,15 +6,15 @@ import {
   StyledCharacter,
 } from "../styled/Game";
 import { Strong } from "../styled/RandomStyles";
+import { useScore } from "../context/ScoreContext";
 
 export default function Game({ history }) {
-  const MAX_SECONDS = 10;
+  const MAX_SECONDS = 6;
+  const [ms, setMs] = useState(999);
+  const [score, setScore] = useScore(0);
+  const [seconds, setSeconds] = useState(MAX_SECONDS);
   const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
   const [currentCharacter, setCurrentCharacter] = useState("");
-
-  const [ms, setMs] = useState(999);
-  const [score, setScore] = useState(0);
-  const [seconds, setSeconds] = useState(MAX_SECONDS);
 
   useEffect(() => {
     setRandomCharacter();
@@ -22,7 +22,7 @@ export default function Game({ history }) {
     const currentTime = new Date();
     const interval = setInterval(() => updateTime(currentTime), 1);
     return () => clearInterval(interval);
-  }, []);
+  }, [score]);
 
   const updateTime = (startTime) => {
     const endTime = new Date();
@@ -44,15 +44,14 @@ export default function Game({ history }) {
     return (zeros + num).slice(-length);
   };
 
-  useEffect(() => {
-    if (seconds <= -1) {
-      //todo save the score
-      history.push("/gameover");
-    }
-  }, [seconds, ms, history]);
+  const setRandomCharacter = () => {
+    const randomInt = Math.floor(Math.random() * 36);
+    setCurrentCharacter(characters[randomInt]);
+  };
 
   const keyUpHandler = useCallback(
     (e) => {
+      console.log("working");
       if (e.key === currentCharacter) {
         setScore((previousScore) => previousScore + 1);
       } else {
@@ -62,7 +61,7 @@ export default function Game({ history }) {
       }
       setRandomCharacter();
     },
-    [currentCharacter, score]
+    [currentCharacter]
   );
 
   useEffect(() => {
@@ -72,10 +71,12 @@ export default function Game({ history }) {
     };
   }, [keyUpHandler]);
 
-  const setRandomCharacter = () => {
-    const randomInt = Math.floor(Math.random() * 36);
-    setCurrentCharacter(characters[randomInt]);
-  };
+  useEffect(() => {
+    if (seconds <= -1) {
+      //todo save the score
+      history.push("/gameover");
+    }
+  }, [seconds, ms, history]);
 
   return (
     <StyledGame>

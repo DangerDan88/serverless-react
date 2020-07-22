@@ -13,7 +13,6 @@ ReactDOM.render(
     redirectUri={window.location.origin}
   >
     <ScoreProvider>
-      {" "}
       <App />
     </ScoreProvider>
   </Auth0Provider>,
