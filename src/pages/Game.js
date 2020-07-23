@@ -9,7 +9,7 @@ import { Strong } from "../styled/RandomStyles";
 import { useScore } from "../context/ScoreContext";
 
 export default function Game({ history }) {
-  const MAX_SECONDS = 6;
+  const MAX_SECONDS = 5;
   const [ms, setMs] = useState(999);
   const [score, setScore] = useScore(0);
   const [seconds, setSeconds] = useState(MAX_SECONDS);
@@ -22,7 +22,7 @@ export default function Game({ history }) {
     const currentTime = new Date();
     const interval = setInterval(() => updateTime(currentTime), 1);
     return () => clearInterval(interval);
-  }, [score]);
+  }, []);
 
   const updateTime = (startTime) => {
     const endTime = new Date();
@@ -61,7 +61,7 @@ export default function Game({ history }) {
       }
       setRandomCharacter();
     },
-    [currentCharacter]
+    [currentCharacter, score, setScore]
   );
 
   useEffect(() => {

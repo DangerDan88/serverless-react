@@ -10,6 +10,7 @@ export default function HighScores() {
       try {
         const res = await fetch("/.netlify/functions/getHighScore");
         const scores = await res.json();
+        console.log(scores);
         setHighScores(scores);
       } catch (err) {
         console.log(err);
@@ -23,7 +24,7 @@ export default function HighScores() {
       <ScoresList>
         {highScores.map((score, index) => (
           <ScoreLI key={score.id}>
-            {index + 1}. {score.fields.name} - {score.fields.score}
+            {score.fields.name} - {score.fields.score}
           </ScoreLI>
         ))}
       </ScoresList>
