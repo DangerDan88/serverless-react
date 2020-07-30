@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function GameOver({ history }) {
   const [score] = useScore();
   const [scoreMessage, setScoreMessage] = useState("");
-  const { getTokenSilently, isAuthenticated } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   if (score === -1) {
     history.push("/");
@@ -17,15 +17,19 @@ export default function GameOver({ history }) {
   useEffect(() => {
     const saveHighScore = async () => {
       try {
-        // const token = await getTokenSilently();
+        const token = await getAccessTokenSilently({
+          audience: "https://learnbuildtypeapi",
+          scope: "read:current_user",
+        });
         const options = {
           method: "POST",
-          body: JSON.stringify({ name: "James", score }),
-          // headers: {
-          // Authorization: `Bearer ${token}`,
-          // },
+          body: JSON.stringify({ Name: "James", score }),
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         };
-        const res = await fetch("./netlify/functions/saveHighScore", options);
+        console.log(options);
+        const res = await fetch("/.netlify/functions/SaveHighScore", options);
         const data = await res.json();
         if (data.id) {
           setScoreMessage("congrats you got a high score");
@@ -39,7 +43,7 @@ export default function GameOver({ history }) {
     if (isAuthenticated) {
       saveHighScore();
     }
-  }, [score, isAuthenticated, getTokenSilently]);
+  }, [score, isAuthenticated, getAccessTokenSilently]);
 
   return (
     <div>

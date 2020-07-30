@@ -16,8 +16,8 @@ exports.handler = async (event) => {
     };
   }
 
-  const { score, name } = JSON.parse(event.body);
-  if (typeof score === "undefined" || !name) {
+  const { Score, Name } = JSON.parse(event.body);
+  if (typeof Score === "undefined" || !Name) {
     return {
       statusCode: 405,
       body: JSON.stringify({ err: "bad request" }),
@@ -30,11 +30,11 @@ exports.handler = async (event) => {
     // we have formatted records in order highest to lowest lowest be last index
     const lowestRecord = records[9];
     if (
-      typeof lowestRecord.fields.score === "undefined" ||
-      score > lowestRecord.fields.score
+      typeof lowestRecord.fields.Score === "undefined" ||
+      Score > lowestRecord.fields.Score
     ) {
       //update record with incoming score
-      const updatedRecord = { id: lowestRecord.id, fields: { name, score } };
+      const updatedRecord = { id: lowestRecord.id, fields: { Name, Score } };
       await table.update([updatedRecord]);
       return {
         statusCode: 200,
