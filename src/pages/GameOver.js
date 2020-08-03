@@ -22,7 +22,7 @@ export default function GameOver({ history }) {
           method: "POST",
           body: JSON.stringify({ Name: "James", Score: score }),
           headers: {
-            Authorization: `Bearer ${token}`,
+            authorization: `Bearer ${token}`,
           },
         };
         console.log(options);
@@ -40,7 +40,7 @@ export default function GameOver({ history }) {
     if (isAuthenticated) {
       saveHighScore();
     }
-  }, [score, isAuthenticated, getAccessTokenSilently]);
+  }, [score, isAuthenticated]);
 
   return (
     <div>
