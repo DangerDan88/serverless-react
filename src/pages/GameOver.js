@@ -17,13 +17,10 @@ export default function GameOver({ history }) {
   useEffect(() => {
     const saveHighScore = async () => {
       try {
-        const token = await getAccessTokenSilently({
-          audience: "https://learnbuildtypeapi",
-          scope: "read:current_user",
-        });
+        const token = await getAccessTokenSilently();
         const options = {
           method: "POST",
-          body: JSON.stringify({ Name: "James", score }),
+          body: JSON.stringify({ Name: "James", Score: score }),
           headers: {
             Authorization: `Bearer ${token}`,
           },
