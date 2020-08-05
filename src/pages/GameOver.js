@@ -20,12 +20,12 @@ export default function GameOver({ history }) {
         const token = await getAccessTokenSilently();
         const options = {
           method: "POST",
-          body: JSON.stringify({ Name: "James", Score: score }),
+          body: JSON.stringify({ Score: score }),
           headers: {
             authorization: `Bearer ${token}`,
           },
         };
-        console.log(options);
+        // console.log(options);
         const res = await fetch("/.netlify/functions/SaveHighScore", options);
         const data = await res.json();
         if (data.id) {
