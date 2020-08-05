@@ -8,23 +8,31 @@ import NavBar from "../src/components/NavBar";
 import { Container } from "./styled/Container";
 import { Main } from "./styled/Main";
 import Global from "./styled/Global";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "../src/styled/Themes";
 
 function App() {
+  const theme = "light";
+  const currentTheme = theme === "light" ? lightTheme : darkTheme;
+
   return (
     <Router>
-      <Global />
-      <Main>
-        <Container>
-          <NavBar />
-          <Switch>
-            {/*   You have the home path last when using the switch so if all other routes fail will send them to final route which is home   */}
-            <Route path="/game" component={Game} />
-            <Route path="/highscores" component={HighScores} />
-            <Route path="/gameover" component={GameOver} />
-            <Route path="/home" component={Home} />
-          </Switch>
-        </Container>
-      </Main>
+      <ThemeProvider theme={currentTheme}>
+        {" "}
+        <Global />
+        <Main>
+          <Container>
+            <NavBar />
+            <Switch>
+              {/*   You have the home path last when using the switch so if all other routes fail will send them to final route which is home   */}
+              <Route path="/game" component={Game} />
+              <Route path="/highscores" component={HighScores} />
+              <Route path="/gameover" component={GameOver} />
+              <Route path="/home" component={Home} />
+            </Switch>
+          </Container>
+        </Main>
+      </ThemeProvider>
     </Router>
   );
 }
