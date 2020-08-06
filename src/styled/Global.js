@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
 :root {
 --main-bg-color: ${(props) => props.theme.mainBgColor};
     --main-text-color:  ${(props) => props.theme.mainTextColor}
-    --accent-color:  ${(props) => props.theme.accentColor};
+    --accent-color:  #e16365;
 }
 
 
