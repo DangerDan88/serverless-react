@@ -7,22 +7,23 @@ import HighScores from "../src/pages/HighScores";
 import NavBar from "../src/components/NavBar";
 import { Container } from "./styled/Container";
 import { Main } from "./styled/Main";
-import Global from "./styled/Global";
+import { GlobalStyle } from "./styled/Global";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../src/styled/Themes";
+import useTheme from "../src/hooks/useTheme";
 
 function App() {
-  const theme = "light";
+  const [theme, toggleTheme] = useTheme();
   const currentTheme = theme === "light" ? lightTheme : darkTheme;
 
   return (
     <Router>
       <ThemeProvider theme={currentTheme}>
         {" "}
-        <Global />
+        <GlobalStyle />
         <Main>
           <Container>
-            <NavBar />
+            <NavBar toggleTheme={toggleTheme} />
             <Switch>
               {/*   You have the home path last when using the switch so if all other routes fail will send them to final route which is home   */}
               <Route path="/game" component={Game} />

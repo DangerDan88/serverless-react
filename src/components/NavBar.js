@@ -7,8 +7,9 @@ import {
 } from "../styled/NavBar";
 import { Accent } from "../styled/RandomStyles";
 import { useAuth0 } from "@auth0/auth0-react";
+import useTheme from "../hooks/useTheme";
 
-export default function NavBar() {
+export default function NavBar({ toggleTheme }) {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
@@ -31,6 +32,7 @@ export default function NavBar() {
           <button onClick={() => loginWithRedirect()}>Log In</button>
         )}
         {isAuthenticated && <button onClick={() => logout()}>Log Out</button>}
+        <button onClick={toggleTheme}>Toggle Theme</button>
       </StyledNavItems>
     </StyledNavBar>
   );

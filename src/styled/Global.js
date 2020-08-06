@@ -1,7 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-const isDarkThemeEnabled = false;
-
 export const GlobalStyle = createGlobalStyle`
 
 :root {
